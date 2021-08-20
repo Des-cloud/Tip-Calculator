@@ -15,6 +15,8 @@
 		E1BA2BB526CD708E0004813A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1BA2BB326CD708E0004813A /* LaunchScreen.storyboard */; };
 		E1BA2BC026CD708E0004813A /* Tip_CalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BA2BBF26CD708E0004813A /* Tip_CalculatorTests.swift */; };
 		E1BA2BCB26CD708E0004813A /* Tip_CalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BA2BCA26CD708E0004813A /* Tip_CalculatorUITests.swift */; };
+		E1BA2BD926CDA61F0004813A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BA2BD826CDA61F0004813A /* SettingsViewController.swift */; };
+		E1BA2BDB26CF413F0004813A /* UIHexColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BA2BDA26CF413F0004813A /* UIHexColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		E1BA2BC626CD708E0004813A /* Tip CalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tip CalculatorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1BA2BCA26CD708E0004813A /* Tip_CalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tip_CalculatorUITests.swift; sourceTree = "<group>"; };
 		E1BA2BCC26CD708E0004813A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1BA2BD826CDA61F0004813A /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E1BA2BDA26CF413F0004813A /* UIHexColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHexColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 				E1BA2BA826CD708D0004813A /* AppDelegate.swift */,
 				E1BA2BAA26CD708D0004813A /* SceneDelegate.swift */,
 				E1BA2BAC26CD708D0004813A /* ViewController.swift */,
+				E1BA2BD826CDA61F0004813A /* SettingsViewController.swift */,
+				E1BA2BDA26CF413F0004813A /* UIHexColors.swift */,
 				E1BA2BAE26CD708D0004813A /* Main.storyboard */,
 				E1BA2BB126CD708E0004813A /* Assets.xcassets */,
 				E1BA2BB326CD708E0004813A /* LaunchScreen.storyboard */,
@@ -260,7 +266,9 @@
 			files = (
 				E1BA2BAD26CD708D0004813A /* ViewController.swift in Sources */,
 				E1BA2BA926CD708D0004813A /* AppDelegate.swift in Sources */,
+				E1BA2BDB26CF413F0004813A /* UIHexColors.swift in Sources */,
 				E1BA2BAB26CD708D0004813A /* SceneDelegate.swift in Sources */,
+				E1BA2BD926CDA61F0004813A /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
