@@ -237,24 +237,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtF-FW-G98">
-                                <rect key="frame" x="20" y="438" width="95" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="keO-Xr-sTk">
-                                <rect key="frame" x="215" y="417" width="179" height="61"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cOa-Pr-ZVU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="o3y-1a-Ffp"/>
                     <connections>
-                        <outlet property="picker" destination="keO-Xr-sTk" id="bxP-OI-HtG"/>
                         <outlet property="themeSwitch" destination="kLi-LP-VNY" id="xHf-Uc-cJV"/>
                         <outlet property="tip1Label" destination="dzY-ZS-PFr" id="LDK-WW-jB7"/>
                         <outlet property="tip2Label" destination="pcr-8Z-8C5" id="kbV-UV-nli"/>

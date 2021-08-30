@@ -7,6 +7,30 @@
 
 import UIKit
 
+extension Formatter {
+    static let number = NumberFormatter()
+}
+extension Locale {
+    static let englishUS: Locale = .init(identifier: "en_US")
+    static let frenchFR: Locale = .init(identifier: "fr_FR")
+    static let portugueseBR: Locale = .init(identifier: "pt_BR")
+}
+
+//Get thousand separator
+extension Numeric {
+    func formatted(with groupingSeparator: String? = ",", style: NumberFormatter.Style, locale: Locale = .current) -> String {
+        Formatter.number.locale = locale
+        Formatter.number.numberStyle = style
+        if let groupingSeparator = groupingSeparator {
+            Formatter.number.groupingSeparator = groupingSeparator
+        }
+        return Formatter.number.string(for: self) ?? ""
+    }
+    // Localized
+    var currency:   String { formatted(style: .currency) }
+    var calculator: String { formatted(style: .decimal) }
+}
+
 class ViewController: UIViewController, DataEnteredDelegate {
     
     @IBOutlet weak var tipAmountLabel: UILabel!
@@ -17,8 +41,7 @@ class ViewController: UIViewController, DataEnteredDelegate {
     @IBOutlet weak var amountPerPersonLabel: UILabel!
     @IBOutlet weak var totalAmountLabel: UILabel!
     
-    var tipPercentages = [0.08, 0.12, 0.18]
-    var currencySymbol = "$"
+    var tipPercentages = [8.0, 12.0, 18.0]   //Initial tips
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +50,11 @@ class ViewController: UIViewController, DataEnteredDelegate {
         billAmountTextField.adjustsFontSizeToFitWidth = true
         billAmountTextField.becomeFirstResponder()
         self.title = "Tip Calculator"
-        // Do any additional setup after loading the view.
     }
     
+    //Animations
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // This is a good place to retrieve the default tip percentage from UserDefaults
-        // and use it to update the tip amount
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -48,29 +69,32 @@ class ViewController: UIViewController, DataEnteredDelegate {
         super.viewDidAppear(animated)
     }
     
+    //Get tip and totals as user type
     @IBAction func calculateTotalAmount(_ sender: UITextField) {
         calculateTip(AnyObject.self)
     }
     
+    //Get number of guests
     @IBAction func partySizeControl(_ sender: UIStepper) {
         partySizeLabel.text = Int(sender.value).description
         calculateTip(AnyObject.self)
     }
     
+    //calculate and update total and tips
     @IBAction func calculateTip(_ sender: Any) {
         //Get current bill amount
         let bill = Double(billAmountTextField.text!) ?? 0
         
         //Calculate tips
-        let tip = bill * tipPercentages[tipControl.selectedSegmentIndex]
+        let tip = bill * (tipPercentages[tipControl.selectedSegmentIndex] / 100.0)
         let total = bill + tip
         let partySize = Int(partySizeLabel.text!) ?? 0
         let perPerson = total / Double(partySize)
         
         //Update fields
-        tipAmountLabel.text = currencySymbol + String(format: " %.2f", tip)
-        totalAmountLabel.text = currencySymbol + String(format: " %.2f", total)
-        amountPerPersonLabel.text = currencySymbol + String(format: " %.2f", perPerson)
+        tipAmountLabel.text = tip.currency
+        totalAmountLabel.text = total.currency
+        amountPerPersonLabel.text = perPerson.currency
     }
     
     //Send current to settingsview and receive new tips
@@ -81,15 +105,9 @@ class ViewController: UIViewController, DataEnteredDelegate {
         settingsViewController.receivedTips = tipPercentages
     }
     
-    //Make changes to the received new tips
-    func currencySelected(currency: String!) {
-        currencySymbol = getSymbol(forCurrencyCode: currency) ?? "$"
-        calculateTip(AnyObject.self)
-    }
-    
     func tipsChanged (newTips: Array<Double>) {
         for index in 0..<newTips.count {
-            tipPercentages[index] = newTips[index] / 100.0
+            tipPercentages[index] = newTips[index]
         }
         changeTipControlSegments(newTips)
         calculateTip(AnyObject.self)
@@ -100,16 +118,6 @@ class ViewController: UIViewController, DataEnteredDelegate {
         for i in 0...2 {
             tipControl.setTitle(String(sender[i])+"%", forSegmentAt: i)
         }
-    }
-    
-    //Get currency symbol
-    func getSymbol(forCurrencyCode code: String) -> String? {
-        let locale = NSLocale(localeIdentifier: code)
-        if locale.displayName(forKey: .currencySymbol, value: code) == code {
-            let newlocale = NSLocale(localeIdentifier: code.dropLast() + "_en")
-            return newlocale.displayName(forKey: .currencySymbol, value: code)
-        }
-        return locale.displayName(forKey: .currencySymbol, value: code)
     }
 
 }
